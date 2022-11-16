@@ -52,11 +52,11 @@
             StateStack.Push(StateStack.Peek().DeepClone());
         }
 
-        public void ShowText(IInputBytes bytes)
+        public void ShowText(IToken sourceToken, IInputBytes bytes)
         {
         }
 
-        public void ShowPositionedText(IReadOnlyList<IToken> tokens)
+        public void ShowPositionedText(IToken sourceToken, IReadOnlyList<IToken> tokens)
         {
         }
 

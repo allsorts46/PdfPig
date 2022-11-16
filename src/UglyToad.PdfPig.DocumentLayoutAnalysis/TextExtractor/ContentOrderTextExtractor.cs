@@ -58,6 +58,7 @@
                 if (options.ReplaceWhitespaceWithSpace && ReplaceableWhitespace.Contains(letter.Value))
                 {
                     letter = new Letter(
+                        letter.Code,
                         " ",
                         letter.GlyphRectangle,
                         letter.StartBaseLine,
@@ -67,7 +68,8 @@
                         letter.Font,
                         letter.Color,
                         letter.PointSize,
-                        letter.TextSequence);
+                        letter.TextSequence)
+                        { SourceToken = letter.SourceToken };
                 }
 
                 if (letter.Value == " " && !hasJustAddedWhitespace)

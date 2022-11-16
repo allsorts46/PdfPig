@@ -43,14 +43,16 @@
         /// <summary>
         /// Shows the text represented by the provided bytes using the current graphics state.
         /// </summary>
+        /// <param name="sourceToken">Token from which this text originated.</param>
         /// <param name="bytes">The bytes of the text.</param>
-        void ShowText(IInputBytes bytes);
+        void ShowText(IToken sourceToken, IInputBytes bytes);
 
         /// <summary>
         /// Interprets the tokens to draw text at positions.
         /// </summary>
+        /// <param name="sourceToken">Token from which this text originated.</param>
         /// <param name="tokens">The tokens to show.</param>
-        void ShowPositionedText(IReadOnlyList<IToken> tokens);
+        void ShowPositionedText(IToken sourceToken, IReadOnlyList<IToken> tokens);
 
         /// <summary>
         /// Retrieves the named XObject and applies it to the current state.

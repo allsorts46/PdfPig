@@ -48,6 +48,15 @@ namespace UglyToad.PdfPig.Tokens
         public IReadOnlyList<byte> Bytes { get; }
 
         /// <summary>
+        /// Create a new <see cref="HexToken"/> from the provided bytes.
+        /// </summary>
+        /// <param name="bytes">Byte array data.</param>
+        public HexToken(Byte[] bytes)
+            : this(String.Concat(bytes.Select(b => b.ToString("X2")).ToArray()).ToCharArray())
+            { 
+            }
+
+        /// <summary>
         /// Create a new <see cref="HexToken"/> from the provided hex characters.
         /// </summary>
         /// <param name="characters">A set of hex characters 0-9, A - F, a - f representing a string.</param>

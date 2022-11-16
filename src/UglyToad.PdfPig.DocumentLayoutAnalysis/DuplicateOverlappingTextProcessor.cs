@@ -70,7 +70,8 @@
                     // update font details to bold
                     var fontDetails = new FontDetails(letter.Font.Name, true, letter.Font.Weight, letter.Font.IsItalic);
 
-                    var newLetter = new Letter(letter.Value,
+                    var newLetter = new Letter(letter.Code,
+                        letter.Value,
                         letter.GlyphRectangle,
                         letter.StartBaseLine,
                         letter.EndBaseLine,
@@ -79,7 +80,8 @@
                         fontDetails,
                         letter.Color,
                         letter.PointSize,
-                        letter.TextSequence);
+                        letter.TextSequence)
+                        { SourceToken = letter.SourceToken };
 
                     // update markedContentStack?
 

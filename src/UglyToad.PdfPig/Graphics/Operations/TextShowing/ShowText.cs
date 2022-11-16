@@ -2,6 +2,7 @@
 {
     using System.IO;
     using PdfPig.Core;
+    using UglyToad.PdfPig.Tokens;
     using Util.JetBrains.Annotations;
 
     /// <inheritdoc />
@@ -23,6 +24,11 @@
     /// </remarks>
     public class ShowText : IGraphicsStateOperation
     {
+        /// <summary>
+        /// Token from which this text originated.
+        /// </summary>
+        public OperatorToken SourceToken { get; internal set; }
+
         /// <summary>
         /// The symbol for this operation in a stream.
         /// </summary>
@@ -64,7 +70,7 @@
         {
             var input = new ByteArrayInputBytes(Text != null ? OtherEncodings.StringAsLatin1Bytes(Text) : Bytes);
 
-            operationContext.ShowText(input);
+            operationContext.ShowText(this.SourceToken, input);
         }
 
         /// <inheritdoc />

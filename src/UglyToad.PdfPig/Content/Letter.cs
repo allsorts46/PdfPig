@@ -10,6 +10,16 @@
     public class Letter
     {
         /// <summary>
+        /// Token from which this letter originated.
+        /// </summary>
+        public Tokens.IToken SourceToken { get; set; }
+
+        /// <summary>
+        /// Code point within font.
+        /// </summary>
+        public int Code { get; }
+
+        /// <summary>
         /// The text for this letter or unicode character.
         /// </summary>
         public string Value { get; }
@@ -79,7 +89,7 @@
         /// <summary>
         /// Create a new letter to represent some text drawn by the Tj operator.
         /// </summary>
-        public Letter(string value, PdfRectangle glyphRectangle,
+        public Letter(int code, string value, PdfRectangle glyphRectangle,
             PdfPoint startBaseLine,
             PdfPoint endBaseLine,
             double width,
@@ -89,6 +99,7 @@
             double pointSize,
             int textSequence)
         {
+            Code = code;
             Value = value;
             GlyphRectangle = glyphRectangle;
             StartBaseLine = startBaseLine;

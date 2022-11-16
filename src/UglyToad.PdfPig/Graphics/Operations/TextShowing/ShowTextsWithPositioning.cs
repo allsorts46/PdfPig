@@ -29,6 +29,11 @@
         public IReadOnlyList<IToken> Array { get; }
 
         /// <summary>
+        /// Token from which this text originated.
+        /// </summary>
+        public OperatorToken SourceToken { get; internal set; }
+
+        /// <summary>
         /// Create a new <see cref="ShowTextsWithPositioning"/>.
         /// </summary>
         /// <param name="array">The array elements.</param>
@@ -54,7 +59,7 @@
         /// <inheritdoc />
         public void Run(IOperationContext operationContext)
         {
-            operationContext.ShowPositionedText(Array);
+            operationContext.ShowPositionedText(this.SourceToken, Array);
         }
 
         /// <inheritdoc />

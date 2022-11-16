@@ -358,11 +358,11 @@ namespace UglyToad.PdfPig.Graphics
 
                     if (operands[0] is StringToken s)
                     {
-                        return new ShowText(s.Data);
+                        return new ShowText(s.Data) { SourceToken = op };
                     }
                     else if (operands[0] is HexToken h)
                     {
-                        return new ShowText(h.Bytes.ToArray());
+                        return new ShowText(h.Bytes.ToArray()) { SourceToken = op };
                     }
                     else
                     {
@@ -376,7 +376,7 @@ namespace UglyToad.PdfPig.Graphics
 
                     if (operands.Count == 1 && operands[0] is ArrayToken arrayToken)
                     {
-                        return new ShowTextsWithPositioning(arrayToken.Data);
+                        return new ShowTextsWithPositioning(arrayToken.Data) { SourceToken = op };
                     }
 
                     var array = operands.ToArray();

@@ -218,7 +218,7 @@
             graphicsStack.Push(graphicsStack.Peek().DeepClone());
         }
 
-        public void ShowText(IInputBytes bytes)
+        public void ShowText(IToken sourceToken, IInputBytes bytes)
         {
             var currentState = GetCurrentState();
 
@@ -312,6 +312,7 @@
                         letters.Remove(attachTo);
 
                         letter = new Letter(
+                            code,
                             newLetter,
                             attachTo.GlyphRectangle,
                             attachTo.StartBaseLine,
@@ -321,11 +322,13 @@
                             attachTo.Font,
                             attachTo.Color,
                             attachTo.PointSize,
-                            attachTo.TextSequence);
+                            attachTo.TextSequence)
+                            { SourceToken = sourceToken};
                     }
                     else
                     {
                         letter = new Letter(
+                            code,
                             unicode,
                             transformedGlyphBounds,
                             transformedPdfBounds.BottomLeft,
@@ -335,12 +338,14 @@
                             font.Details,
                             color,
                             pointSize,
-                            textSequence);
+                            textSequence)
+                            { SourceToken = sourceToken };
                     }
                 }
                 else
                 {
                     letter = new Letter(
+                        code,
                         unicode,
                         transformedGlyphBounds,
                         transformedPdfBounds.BottomLeft,
@@ -350,7 +355,8 @@
                         font.Details,
                         color,
                         pointSize,
-                        textSequence);
+                        textSequence)
+                        { SourceToken = sourceToken };
                 }
 
                 letters.Add(letter);
@@ -375,7 +381,7 @@
             }
         }
 
-        public void ShowPositionedText(IReadOnlyList<IToken> tokens)
+        public void ShowPositionedText(IToken sourceToken, IReadOnlyList<IToken> tokens)
         {
             textSequence++;
 
@@ -421,7 +427,7 @@
                         bytes = OtherEncodings.StringAsLatin1Bytes(((StringToken)token).Data);
                     }
 
-                    ShowText(new ByteArrayInputBytes(bytes));
+                    ShowText(sourceToken, new ByteArrayInputBytes(bytes));
                 }
             }
         }
