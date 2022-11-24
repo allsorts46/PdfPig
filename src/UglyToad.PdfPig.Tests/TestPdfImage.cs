@@ -45,5 +45,7 @@
         }
 
         public bool TryGetPng(out byte[] bytes) => PngFromPdfImageFactory.TryGenerate(this, out bytes);
+
+        public NameToken Name => null;
     }
 }

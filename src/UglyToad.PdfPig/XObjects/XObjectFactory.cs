@@ -147,7 +147,7 @@
 
             var details = ColorSpaceDetailsParser.GetColorSpaceDetails(colorSpace, dictionary, pdfScanner, resourceStore, filterProvider);
 
-            return new XObjectImage(
+            return new XObjectImage(xObject,
                 bounds,
                 width,
                 height,

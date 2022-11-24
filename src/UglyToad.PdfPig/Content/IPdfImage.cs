@@ -105,5 +105,7 @@
         /// Try to convert the image to PNG. Doesn't support conversion of JPG to PNG.
         /// </summary>
         bool TryGetPng(out byte[] bytes);
+
+        NameToken Name { get; }
     }
 }

@@ -8,6 +8,7 @@
     using Graphics.Core;
     using Images.Png;
     using Tokens;
+    using UglyToad.PdfPig.Graphics;
     using Util.JetBrains.Annotations;
 
     /// <inheritdoc />
@@ -66,10 +67,13 @@
         /// <inheritdoc />
         public ColorSpaceDetails ColorSpaceDetails { get; }
 
+        internal XObjectContentRecord XObject { get; }
+
         /// <summary>
         /// Creates a new <see cref="XObjectImage"/>.
         /// </summary>
-        internal XObjectImage(PdfRectangle bounds,
+        internal XObjectImage(XObjectContentRecord xObject,
+            PdfRectangle bounds,
             int widthInSamples,
             int heightInSamples,
             int bitsPerComponent,
@@ -84,6 +88,7 @@
             Lazy<IReadOnlyList<byte>> bytes,
             ColorSpaceDetails colorSpaceDetails)
         {
+            XObject = xObject;
             Bounds = bounds;
             WidthInSamples = widthInSamples;
             HeightInSamples = heightInSamples;
@@ -122,5 +127,7 @@
         {
             return $"XObject Image (w {Bounds.Width}, h {Bounds.Height}): {ImageDictionary}";
         }
-    }
+
+        public NameToken Name => XObject.Name;
+        }
 }

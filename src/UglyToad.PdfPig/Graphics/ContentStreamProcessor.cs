@@ -446,14 +446,14 @@
 
             if (subType.Equals(NameToken.Ps))
             {
-                var contentRecord = new XObjectContentRecord(XObjectType.PostScript, xObjectStream, matrix, state.RenderingIntent,
+                var contentRecord = new XObjectContentRecord(XObjectType.PostScript, xObjectName, xObjectStream, matrix, state.RenderingIntent,
                     state.CurrentStrokingColor?.ColorSpace ?? ColorSpace.DeviceRGB);
 
                 xObjects[XObjectType.PostScript].Add(contentRecord);
             }
             else if (subType.Equals(NameToken.Image))
             {
-                var contentRecord = new XObjectContentRecord(XObjectType.Image, xObjectStream, matrix, state.RenderingIntent,
+                var contentRecord = new XObjectContentRecord(XObjectType.Image, xObjectName, xObjectStream, matrix, state.RenderingIntent,
                     state.CurrentStrokingColor?.ColorSpace ?? ColorSpace.DeviceRGB);
 
                 images.Add(Union<XObjectContentRecord, InlineImage>.One(contentRecord));

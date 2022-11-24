@@ -131,5 +131,7 @@
         {
             return $"Inline Image (w {Bounds.Width}, h {Bounds.Height})";
         }
+
+        public NameToken Name => null;
     }
 }

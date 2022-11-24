@@ -12,6 +12,8 @@
     {
         public XObjectType Type { get; }
 
+        public NameToken Name { get; }
+
         [NotNull]
         public StreamToken Stream { get; }
 
@@ -21,11 +23,12 @@
 
         public ColorSpace DefaultColorSpace { get; }
 
-        public XObjectContentRecord(XObjectType type, StreamToken stream, TransformationMatrix appliedTransformation,
+        public XObjectContentRecord(XObjectType type, NameToken name, StreamToken stream, TransformationMatrix appliedTransformation,
             RenderingIntent defaultRenderingIntent,
             ColorSpace defaultColorSpace)
         {
             Type = type;
+            Name = name;
             Stream = stream ?? throw new ArgumentNullException(nameof(stream));
             AppliedTransformation = appliedTransformation;
             DefaultRenderingIntent = defaultRenderingIntent;
